@@ -1,0 +1,30 @@
+div.box {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    float: left;
+    border: 1px solid
+}
+
+#container {
+    width: 510px;
+    border: none;
+    float: left;
+}
+
+#levels{
+    width: 400px;
+    height: 100%;
+    float: right;
+    background-color: #FF9900;
+}
+
+.off {
+    background-color:#EEEEEE;
+}
+
+.on {
+    background-color:#EE1111;
+}

@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Lights Out</title>
+<link rel="stylesheet" type="text/css" href="lights.css">
+<script src="./jquery-2.1.4.min.js"></script>
+<script>
+
+function toggle(box){
+console.log(box);
+    if(box>0 && box <26){
+        $('#'+box).toggleClass("off on");
+    }
+}
+
+function loadLevel(data){
+    for(var i=1; i<26; i++) {
+        $('#'+i).addClass('off').removeClass('on');
+    }
+    var rows = [];
+    rows.push(data.charCodeAt(0).toString(2).substring(2));
+    rows.push(data.charCodeAt(1).toString(2).substring(2));
+    rows.push(data.charCodeAt(2).toString(2).substring(2));
+    rows.push(data.charCodeAt(3).toString(2).substring(2));
+    rows.push(data.charCodeAt(4).toString(2).substring(2));
+    console.log(rows);
+    
+    for(var i=0; i<5; i++){
+      for(var j=0; j<5; j++){
+          if(parseInt(rows[i].charAt(j))){
+              toggle(5*i+j+1);          
+          }
+      }
+    }
+    
+    
+}
+
+$(document).ready(function(){
+    $('.box').click(function(){
+        var target = parseInt($(this).attr('id'));
+        var neighbors = [target, target-5, target+5];
+        if (target%5 != 1) { neighbors.push(target-1) }
+        if (target%5 != 0) { neighbors.push(target+1) }
+        
+        neighbors.forEach(function(entry) {
+            toggle(entry);
+        });
+    });
+});
+
+
+</script>
+</head>
+
+
+<body>
+
+<div id="container">
+<div class="box off" id="1"></div>
+<div class="box off" id="2"></div>
+<div class="box off" id="3"></div>
+<div class="box off" id="4"></div>
+<div class="box off" id="5"></div>
+<div class="box off" id="6"></div>
+<div class="box off" id="7"></div>
+<div class="box off" id="8"></div>
+<div class="box off" id="9"></div>
+<div class="box off" id="10"></div>
+<div class="box off" id="11"></div>
+<div class="box off" id="12"></div>
+<div class="box off" id="13"></div>
+<div class="box off" id="14"></div>
+<div class="box off" id="15"></div>
+<div class="box off" id="16"></div>
+<div class="box off" id="17"></div>
+<div class="box off" id="18"></div>
+<div class="box off" id="19"></div>
+<div class="box off" id="20"></div>
+<div class="box off" id="21"></div>
+<div class="box off" id="22"></div>
+<div class="box off" id="23"></div>
+<div class="box off" id="24"></div>
+<div class="box off" id="25"></div>
+</div>
+
+<div id="levels">
+<input onclick='loadLevel("aaaaa")' type="button" value="Level 1"></input>
+<input onclick='loadLevel("_____")' type="button" value="Level 2"></input>
+
+</div>
+
+</body>
+
+</html>
